@@ -1,42 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
+  <head>
+    <style>
+      #movie {
+        float: left;
+        width: 50%
+      }
+      #book {
+        float: left;
+        width: 50%
+      }
+      #judgement {
+        clear: both;
+        width: 100%;
+        text-align: center;
+      }
+    </style>
+    <meta charset="utf-8">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="./assets/javascript/API-keys.js"></script>
-    <script src="./assets/javascript/app.js"></script>
-
-
-    <title>Paper-vs-Picture</title>
-
-</head>
-<body onload="initialize();">
-    <div class="container">
-        <div id="header">Image of Logo (Paper-vs-Picture)</div>
-        <div id="searchInput">
-            <form id="search-form">
-                <label for="title"><span class="text">Title of book</span></label><br>
-                <input type="text" id="title" placeholder="Enter Book Title"><br>
-                <input id="find-title" type="button" value="Submit">
-            </form>
-        </div>
-        <div id="book"></div>
-            <div id="bookCover"></div>
-            <div id="bookRating"></div>
-            <div id="bookReview"></div>
-        </div>
-        <div>
-            <div id="moviePoster" ></div>
-            <div id="movieRating"></div>
-            <div id="movieReview"></div>
-        </div>
-        <div id="footer"></div>
-
-
+    <script type="text/javascript" src="assets/javascript/script.js"></script>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <title>Reviews</title>
+  </head>
+  <body onLoad="readyDocument();">
+    <div id="header">
+      <div id="search">
+        <form>
+            <input id="searchTitle" type="text" placeholder="Title" />
+            <button id="newAnimalBtn" type="button" onclick="addReviews();">Search</button>
+        </form>
+      </div>
     </div>
+    <div id="animalButtons">
+    </div>
+    <div id="content">
+      <span id="movie">
+        <div id="movieRating"></div>
+        <div id="movieReview"></div>
+      </span>
+      <span id="book">
+        <div id="bookRating"></div>
+        <div id="bookReview"></div>
+      </span>
+      <div id="judgement">
+      </div>
+    </div>
+  </body>
 
-</body>
 </html>
