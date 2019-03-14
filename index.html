@@ -5,9 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+        crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="./assets/javascript/API-keys.js"></script>
     <script src="./assets/javascript/app.js"></script>
+    <link rel="stylesheet" href="assets/css/style.css" />
 
 
     <title>Paper-vs-Picture</title>
@@ -23,11 +26,16 @@
                 <input id="find-title" type="button" value="Submit">
             </form>
         </div>
+        <div class="container">
+            <img id="title-image" src="" alt="" />
+            <div class="row">
+                <div class="col-md-6 display-column">
         <div id="book"></div>
             <div id="bookCover"></div>
             <div id="bookRating"></div>
             <div id="bookReview"></div>
         </div>
+        <div class="col-md-6 display-column">
         <div>
             <div id="moviePoster" ></div>
             <div id="movieRating"></div>
