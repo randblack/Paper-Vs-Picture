@@ -7,12 +7,15 @@ let movieCover = "";
 let movieRating = "";
 let movieReview = "";
 
+// initializes all funtions on click
 function initialize () {
     $("#find-title").on('click', function() {
         console.log ("initialized")
         SetSearchTerm();
         googleBooks ();
         OMDB ();
+        displayPoster ();
+        displayCover () 
     });
 }
 
@@ -23,8 +26,36 @@ function SetSearchTerm () {
     $("#title").val("");
 }
 
+function displayCover () {
+
+
+var queryURL = 'https://openlibrary.org/api/books?bibkeys=TITLE:' + searchTerm + '&jscmd=details&format=json';
+    $.ajax({
+        url    : queryURL,
+        method : 'GET'
+    }).then(function(response) {
+        console.log(response);
+        console.log(response['TITLE:' + searchTerm].details.isbn_13[0]);
+        console.log(response['TITLE:' + searchTerm].thumbnail_url);
+        // var p = $('<p>').html('Movie Rating: ' + movieRating);
+        // $('#movieReview').append(p);
+
+        let coverURL= response['TITLE:' + searchTerm].thumbnail_url;
+        console.log(coverURL);
+        
+        let lrgCoverURL = coverURL.replace("S.jpg", "L.jpg");
+        console.log(lrgCoverURL);
+
+        $("#bookCover").append("<img src='" + lrgCoverURL + "'></img>");
+        
+        
+    });
+
+}
+
 function googleBooks () {
     let queryURL = "https://www.googleapis.com/books/v1/volumes?q={" + searchTerm + "}";
+
 
     // Created an AJAX call
     $.ajax({
@@ -34,8 +65,29 @@ function googleBooks () {
             console.log ("Book:",response);
             bookRating = response.items[0].volumeInfo.averageRating
             console.log ("Book Rating: ",bookRating);
+            
+
+
             $("#bookRating").append("<div>Book Rating: "+ bookRating +"</div>")
+
         });
+}
+
+function displayPoster (){
+    let queryURL = "https://www.omdbapi.com/?t=" + searchTerm + "&y=&plot=short&apikey=trilogy";
+
+    // Created an AJAX call
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+        }).then(function(response) {
+            console.log ("Moive:",response);
+            console.log (response.Ratings.length);
+            console.log (response.Poster);
+
+            //transfers url to movie poster div
+    $("#moviePoster").append("<img src='" + response.Poster + "'></img>");
+});
 }
 
 function OMDB () {
@@ -49,12 +101,14 @@ function OMDB () {
             console.log ("Moive:",response);
             console.log (response.Ratings.length);
             console.log (response.Poster);
+
+            
             for (let i = 0; i < response.Ratings.length; i++) {
                 movieRatingSource = response.Ratings[i].Source;
                 movieRating = response.Ratings[i].Value;
 
-                //transfers url to movie poster div
-                $("#moviePoster").append("<img src='" + response.Poster + "'></img>");
+                
+                
 
                 let movieRatingId = "movieRating" + i
                 $("#movieRating").append("<div id='" + movieRatingId + "'></div>");
