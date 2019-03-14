@@ -15,7 +15,8 @@ function initialize () {
         googleBooks ();
         OMDB ();
         displayPoster ();
-        displayCover () 
+        displayCover (); 
+        showCover (); 
     });
 }
 
@@ -25,7 +26,33 @@ function SetSearchTerm () {
     console.log (searchTerm);
     $("#title").val("");
 }
+//Both the showCover function and the bookCover function are needed to show the book covers 
+function showCover () {
 
+
+var queryURL4 = 'https://www.googleapis.com/books/v1/volumes?q=' + searchTerm;
+    $.ajax({
+        url    : queryURL4,
+        method : 'GET'
+    }).then(function(response) {
+        console.log(response.items[0].volumeInfo.imageLinks.thumbnail);
+        //console.log(response.items[0].volumeInfo.imageLinks.thumbnail);
+        // var bookRating = response.items[0].volumeInfo.averageRating;
+        // var p = $('<p>').html('Book Rating: ' + bookRating);
+        // $('#movieReview').append(p);
+        let coverURL = response.items[0].volumeInfo.imageLinks.thumbnail;
+        var bookImage = $('<img>')
+        bookImage.attr('id', 'bookCoverThumbnail');
+        bookImage.attr('src', coverURL);
+        $('#bookCover').append(bookImage);
+        // $("#bookCover").append("<img src='" + coverURL + "'></img>");
+
+    });
+
+}
+
+
+//Both the showCover function and the bookCover function are needed to show the book covers 
 function displayCover () {
 
 
