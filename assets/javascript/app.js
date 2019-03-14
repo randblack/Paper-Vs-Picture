@@ -13,6 +13,8 @@ function initialize () {
         SetSearchTerm();
         googleBooks ();
         OMDB ();
+        amazonBook ();
+        amazonVideo ();
     });
 }
 
@@ -58,4 +60,25 @@ function OMDB () {
                 $(appendMoiveRatingId).append("<div>Moive Rating: "+ movieRating +"</div>")
             } 
         });
+}
+
+function amazonBook () {
+
+    let queryURL = "https:/www.amazon.com/s?k=" + searchTerm + "&i=stripbooks"
+    
+    bookPurchase = $("<button>");
+    bookPurchase.attr('onclick', "window.open('" + queryURL + "','_black')");
+    bookPurchase.text("Purchase " + searchTerm + " on Amazon")
+    
+    $("#bookPurchase").append(bookPurchase);
+} 
+
+function amazonVideo () {
+    let queryURL = "https:/www.amazon.com/s?k=" + searchTerm + "&i=instant-video"
+    
+    moviePurchase = $("<button>");
+    moviePurchase.attr('onclick', "window.open('" + queryURL + "','_black')");
+    moviePurchase.text("Purchase " + searchTerm + " DVDs or Watch on Amazon Prime")
+    
+    $("#moviePurchase").append(moviePurchase);
 }
