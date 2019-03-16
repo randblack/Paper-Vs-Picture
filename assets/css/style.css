@@ -1,148 +1,83 @@
 body {
 	margin: 0px;
-	font-family: 'Nunito', sans-serif;
 	width: 100%;
+	color: #fff;
+	background-color: #000;
+	font-family: 'Raleway', sans-serif;
 }
 
-.searchTerm {
-	background: -webkit-gradient(linear, left top, right bottom, from(#31a2ff), to(#18dcff));
-	font-size: 1em;
-	border-radius: 15px;
+div#bookCover {
+	width: 200px;
+	height: 300px;
+	overflow: hidden;
+	margin: 0;
+}
+
+img#bookCoverThumbnail {
+	width: 100%;
+	display: block;
+	border-radius: 5px;
+}
+
+img#movieposterThumbnail {
+	width: 200px;
+	overflow: hidden;
+	border-radius: 5px;
+}
+
+#search-form {
+	display: inline;
+}
+
+#judgement {
+	font-size: 36pt;
+	margin-bottom: 0px;
+	opacity: 0.75;
+	text-shadow: 0px 0px 25px #ffffff;
+}
+
+#rule {
+	height: 2px;
+	border-radius: 1px;
+	width: 500px;
+	background-color: #fff;
+	opacity: 0.5;
+}
+
+div#header {
+	margin-top: 5px;
+	margin-left: 5px;
+}
+
+input#title {
 	color: #fff;
 	border: none;
-	margin: 5px;
-	padding-right: 10px;
-	padding-left: 12px;
-	padding-top: 5px;
-	padding-bottom: 7px;
+	height: 30px;
+	width: 300px;
+	border-radius: 15px;
+	background-color: rgb(49, 49, 49);
+	font-size: 14pt;
+	padding-left: 15px;
+	margin: none;
+	padding-top: 0px;
+	padding-bottom: 0px;
 }
 
-.searchTerm:hover,
-.searchTerm:focus,
-.searchTerm:active {
-	outline: none;
+::placeholder {
+	color: rgb(255, 255, 255);
+	opacity: 0.25;
 }
-
-button#newAnimalBtn {
+#find-title {
 	font-size: 15px;
 	height: 30px;
-	width: 60px;
-	background: -webkit-gradient(linear, left top, right bottom, from(#31a2ff), to(#18dcff));
-	color: #fff;
+	width: 70px;
+	background: #fff;
+	color: rgb(43, 43, 43);
 	border: none;
-	border-radius: 8px;
+	border-radius: 15px;
 	margin: none;
-	padding-top: 0px;
-	padding-bottom: 0px;
-	font-family: 'Nunito', sans-serif;
-}
-
-#addImage {
-	width: 10px;
-	height: 10px;
-	/* margin-bottom: 1px; */
-}
-
-input#searchTitle {
-	margin: none;
-	margin-right: 5px;
-	border: none;
-	padding-top: 0px;
-	padding-bottom: 0px;
 	padding-left: 10px;
-	border-radius: 8px;
-	background-color: #e2e3e7;
-	color: #8e8d92;
-	height: 30px;
-	font-size: 1em;
-	font-family: 'Nunito', sans-serif;
+	padding-right: 10px;
+	padding-top: 0px;
+	padding-bottom: 0px;
 }
-
-#searchTitle:focus {
-	box-shadow: 0 0 3pt 1pt #008cff;
-	outline: none;
-}
-
-div#search {
-	margin-left: 20px;
-	margin-top: 10px;
-	margin-bottom: 10px;
-	float: left;
-}
-
-#header {
-	position: fixed;
-	width: 100%;
-	background-color: #fff;
-	border-bottom: solid 1px #e2e3e7;
-	z-index: 1;
-}
-
-#logo {
-	height: 30px;
-	float: left;
-	margin-top: 10px;
-	margin-left: 10px;
-	z-index: 1;
-}
-
-#animalButtons {
-	padding: 15px;
-	width: 50%;
-	position: relative;
-	padding-top: 60px;
-	padding-bottom: 5px;
-	margin: auto;
-	text-align: center;
-}
-
-.gif {
-	object-fit: cover;
-	width: 300px;
-	height: 300px;
-	border: solid 1px #8e8d92;
-}
-
-.poloroid {
-	float: left;
-	margin: 15px;
-	padding: 10px;
-	border-radius: 5px;
-	background-color: #e2e3e7;
-}
-
-h1 {
-	margin: 5px;
-}
-
-p {
-	text-align: center;
-	margin: 5px;
-	font-size: 0.6em;
-	color: #8e8d92;
-}
-
-h2 {
-	float: right;
-	margin: 10px;
-	display: inline;
-	color: #8e8d92;
-}
-
-#content {
-	margin: auto;
-	width: 90%;
-}
-.display-column {
-    padding-top: 20px;
-    border: 3px solid #fff;
-    text-align: center;
-    margin-top: 20px;
-    min-height: 500px;
-    background-color: rgba(255, 255, 255, .3);
-}
-
-img#bookCoverThumbnail{
-    width: 100%;
-}
-
