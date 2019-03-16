@@ -1,4 +1,5 @@
 let searchTerm = "";
+let searchTermURL = "";
 
 let bookCover = "";
 let bookRating = "";
@@ -12,6 +13,7 @@ function initialize () {
     $("#find-title").on('click', function() {
         console.log ("initialized")
         SetSearchTerm();
+        parseSearchTermURL();
         googleBooks ();
         OMDB ();
         displayPoster ();
@@ -28,11 +30,11 @@ function SetSearchTerm () {
     console.log (searchTerm);
     $("#title").val("");
 }
+
 //Both the showCover function and the bookCover function are needed to show the book covers 
 function showCover () {
 
-
-var queryURL4 = 'https://www.googleapis.com/books/v1/volumes?q=' + searchTerm;
+let queryURL4 = 'https://www.googleapis.com/books/v1/volumes?q=' + searchTerm;
     $.ajax({
         url    : queryURL4,
         method : 'GET'
@@ -57,8 +59,7 @@ var queryURL4 = 'https://www.googleapis.com/books/v1/volumes?q=' + searchTerm;
 //Both the showCover function and the bookCover function are needed to show the book covers 
 function displayCover () {
 
-
-var queryURL = 'https://openlibrary.org/api/books?bibkeys=TITLE:' + searchTerm + '&jscmd=details&format=json';
+let queryURL = 'https://openlibrary.org/api/books?bibkeys=TITLE:' + searchTerm + '&jscmd=details&format=json';
     $.ajax({
         url    : queryURL,
         method : 'GET'
@@ -85,7 +86,6 @@ var queryURL = 'https://openlibrary.org/api/books?bibkeys=TITLE:' + searchTerm +
 function googleBooks () {
     let queryURL = "https://www.googleapis.com/books/v1/volumes?q={" + searchTerm + "}";
 
-
     // Created an AJAX call
     $.ajax({
         url: queryURL,
@@ -95,8 +95,6 @@ function googleBooks () {
             bookRating = response.items[0].volumeInfo.averageRating
             console.log ("Book Rating: ",bookRating);
             
-
-
             $("#bookRating").append("<div>Book Rating: "+ bookRating +"</div>")
 
         });
@@ -150,22 +148,29 @@ function OMDB () {
         });
 }
 
-function amazonBook () {
+function parseSearchTermURL () {
+    searchTermURL = encodeURIComponent(searchTerm);
+    searchTermURL = searchTermURL.replace(/'/g, '%27');
+    console.log (searchTermURL);
+}
 
-    let queryURL = "https:/www.amazon.com/s?k=" + searchTerm + "&i=stripbooks"
+function amazonBook () {
+    console.log (searchTermURL)
+
+    let queryURL = "https:/www.amazon.com/s?k=" + searchTermURL + "&i=stripbooks"
     
     bookPurchase = $("<button>");
-    bookPurchase.attr('onclick', "window.open('" + queryURL + "','_black')");
+    bookPurchase.attr('onclick', "window.open('" + queryURL + "','_blank')");
     bookPurchase.text("Purchase " + searchTerm + " on Amazon")
     
     $("#bookPurchase").append(bookPurchase);
 } 
 
 function amazonVideo () {
-    let queryURL = "https:/www.amazon.com/s?k=" + searchTerm + "&i=instant-video"
+    let queryURL = "https:/www.amazon.com/s?k=" + searchTermURL + "&i=instant-video"
     
     moviePurchase = $("<button>");
-    moviePurchase.attr('onclick', "window.open('" + queryURL + "','_black')");
+    moviePurchase.attr('onclick', "window.open('" + queryURL + "','_blank')");
     moviePurchase.text("Purchase " + searchTerm + " DVDs or Watch on Amazon Prime")
     
     $("#moviePurchase").append(moviePurchase);
