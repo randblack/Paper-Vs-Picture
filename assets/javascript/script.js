@@ -1,5 +1,15 @@
 let bookRating = null;
+let bookTitle = null;
+let bookPoster = null;
+let bookPlot = null;
+let bookReview = null;
+let getBook = null;
 let movieRating = null;
+let movieTitle = null;
+let moviePoster = null;
+let moviePlot = null;
+let movieReview = null;
+let getMovie = null;
 // add enter to click and runs get functions
 function initialize() {
 	$('#title').on('keypress', function(event) {
@@ -9,42 +19,76 @@ function initialize() {
 		}
 	});
 	$('#find-title').on('click', function() {
-		console.log('initialized');
 		setSearchTerm();
 		parseSearchTermURL();
-		showBookCover();
-		getBookReview();
-		getBookRating();
-		purchaseBook();
+		getMovieContent();
 		getMovieReview();
-		getMovieRating();
-		displayPoster();
-		displayCover();
-		amazonVideo();
-		judge();
+		getBookReview();
+		getBookContent();
+		movieGet();
+		bookGet();
 	});
 }
 // sets search term and clears previous results
 function setSearchTerm() {
-	console.log('search Clicked');
 	searchTerm = $('#title').val();
-	console.log(searchTerm);
-	$('#title').val('');
-	$('#bookCover').html('');
-	$('#moviePoster').html('');
-	$('#movieReview').html('');
-	$('#bookReview').html('');
-	$('#movieRating').html('');
-	$('#bookRating').html('');
-	$('#judgement').html('');
-	$('#moviePurchase').html('');
-	$('#bookPurchase').html('');
 }
 // sets search term URL
 function parseSearchTermURL() {
 	searchTermURL = encodeURIComponent(searchTerm);
 	searchTermURL = searchTermURL.replace(/'/g, '%27');
-	console.log(searchTermURL);
+}
+// gets movie rating, poster, plot, and title from omdb
+function getMovieContent() {
+	var queryURL = 'https://www.omdbapi.com/?t=' + searchTerm + '&y=&plot=short&apikey=trilogy';
+	$.ajax({
+		url    : queryURL,
+		method : 'GET'
+	}).then(function(response) {
+		var movieRatingLong = response.Ratings[0].Value;
+		var movieRatingDouble = movieRatingLong.substr(0, 3);
+		var movieRatingUnround = movieRatingDouble / 2;
+		movieRating = Math.round(movieRatingUnround * 10) / 10;
+		var moviePosterUrl = response.Poster;
+		moviePoster = $('<img>');
+		moviePoster.attr('id', 'movieposterThumbnail');
+		moviePoster.attr('src', moviePosterUrl);
+		moviePlot = response.Plot;
+		movieTitle = response.Title;
+		setContent();
+	});
+}
+// gets movie review from nyt
+function getMovieReview() {
+	var searchTitle = document.getElementById('title');
+	var searchTerm = searchTitle.value;
+	var queryURL =
+		'https://api.nytimes.com/svc/movies/v2/reviews/search.json?query=' +
+		searchTerm +
+		'&api-key=AGFM7Bkp4YHthCReyXQ2KGqDWUyAaMLW';
+	$.ajax({
+		url    : queryURL,
+		method : 'GET'
+	}).then(function(response) {
+		movieReview = response.results[0].link.url;
+		setContent();
+	});
+}
+// gets book rating, poster, title, and plot from google
+function getBookContent() {
+	var queryURL = 'https://www.googleapis.com/books/v1/volumes?q=' + searchTerm;
+	$.ajax({
+		url    : queryURL,
+		method : 'GET'
+	}).then(function(response) {
+		bookRating = response.items[0].volumeInfo.averageRating;
+		var bookPosterURL = response.items[0].volumeInfo.imageLinks.thumbnail;
+		bookPoster = $('<img>');
+		bookPoster.attr('src', bookPosterURL);
+		bookTitle = response.items[0].volumeInfo.title;
+		bookPlot = response.items[0].volumeInfo.description;
+		setContent();
+	});
 }
 // adds new york times book critic review
 function getBookReview() {
@@ -56,133 +100,92 @@ function getBookReview() {
 		url    : queryURL,
 		method : 'GET'
 	}).then(function(response) {
-		var reviewUrl = response.results[0].url;
-		var p = $('<p>').html('<a href="' + reviewUrl + '">Book Critic Review</a>');
-		$('#bookReview').append(p);
-	});
-}
-// adds google books book ratiing
-function getBookRating() {
-	var queryURL = 'https://www.googleapis.com/books/v1/volumes?q=' + searchTerm;
-	$.ajax({
-		url    : queryURL,
-		method : 'GET'
-	}).then(function(response) {
-		bookRating = response.items[0].volumeInfo.averageRating;
-		var p = $('<p>').html('Book Rating: ' + bookRating);
-		$('#bookRating').append(p);
-	});
-}
-// adds new york times movie critic review
-function getMovieReview() {
-	var searchTitle = document.getElementById('title');
-	var searchTerm = searchTitle.value;
-	var queryURL =
-		'https://api.nytimes.com/svc/movies/v2/reviews/search.json?query=' +
-		searchTerm +
-		'&api-key=AGFM7Bkp4YHthCReyXQ2KGqDWUyAaMLW';
-	console.log(searchTerm);
-	$.ajax({
-		url    : queryURL,
-		method : 'GET'
-	}).then(function(response) {
-		var reviewUrl = response.results[0].link.url;
-		var p = $('<p>').html('<a href="' + reviewUrl + '">Movie Critic Review</a>');
-		$('#movieReview').append(p);
-	});
-}
-//Both the showCover function and the bookCover function are needed to show the book covers
-// gets book cover from google books (small thumbnail)
-function showBookCover() {
-	let queryURL = 'https://www.googleapis.com/books/v1/volumes?q=' + searchTerm;
-	$.ajax({
-		url    : queryURL,
-		method : 'GET'
-	}).then(function(response) {
-		let coverURL = response.items[0].volumeInfo.imageLinks.thumbnail;
-		var bookImage = $('<img>');
-		bookImage.attr('id', 'bookCoverThumbnail');
-		bookImage.attr('src', coverURL);
-		$('#bookCover').append(bookImage);
-	});
-}
-// gets book cover from open library (large thumbnail)
-function displayCover() {
-	let queryURL = 'https://openlibrary.org/api/books?bibkeys=TITLE:' + searchTerm + '&jscmd=details&format=json';
-	$.ajax({
-		url    : queryURL,
-		method : 'GET'
-	}).then(function(response) {
-		console.log(response);
-		console.log(response['TITLE:' + searchTerm].details.isbn_13[0]);
-		console.log(response['TITLE:' + searchTerm].thumbnail_url);
-		let coverURL = response['TITLE:' + searchTerm].thumbnail_url;
-		console.log(coverURL);
-		let lrgCoverURL = coverURL.replace('S.jpg', 'L.jpg');
-		console.log(lrgCoverURL);
-		$('#bookCover').append("<img src='" + lrgCoverURL + "'></img>");
-	});
-}
-// gets movie rating from OMDB
-function getMovieRating() {
-	var queryURL = 'https://www.omdbapi.com/?t=' + searchTerm + '&y=&plot=short&apikey=trilogy';
-	$.ajax({
-		url    : queryURL,
-		method : 'GET'
-	}).then(function(response) {
-		var movieRatingLong = response.Ratings[0].Value;
-		var movieRatingDouble = movieRatingLong.substr(0, 3);
-		movieRating = movieRatingDouble / 2;
-		var p = $('<p>').html('Movie Rating: ' + movieRating);
-		$('#movieRating').append(p);
-	});
-}
-// gets movie poster from OMDB
-function displayPoster() {
-	let queryURL = 'https://www.omdbapi.com/?t=' + searchTerm + '&y=&plot=short&apikey=trilogy';
-	$.ajax({
-		url    : queryURL,
-		method : 'GET'
-	}).then(function(response) {
-		let posterURL = response.Poster;
-		var moviePoster = $('<img>');
-		moviePoster.attr('id', 'movieposterThumbnail');
-		moviePoster.attr('src', posterURL);
-		$('#moviePoster').append(moviePoster);
+		bookReview = response.results[0].url;
+		setContent();
 	});
 }
 // adds link to puchase book from amazon
-function purchaseBook() {
-	console.log(searchTermURL);
-	let queryURL = 'https:/www.amazon.com/s?k=' + searchTermURL + '&i=stripbooks';
-	bookPurchase = $('<button>');
-	bookPurchase.attr('onclick', "window.open('" + queryURL + "','_blank')");
-	bookPurchase.text('Purchase ' + searchTerm + ' on Amazon');
-	$('#bookPurchase').append(bookPurchase);
+function bookGet() {
+	getBook = 'https:/www.amazon.com/s?k=' + searchTermURL + '&i=stripbooks';
+	setContent();
 }
 // adds link to purchase movie from amazon
-function amazonVideo() {
-	let queryURL = 'https:/www.amazon.com/s?k=' + searchTermURL + '&i=instant-video';
-	moviePurchase = $('<button>');
-	moviePurchase.attr('onclick', "window.open('" + queryURL + "','_blank')");
-	moviePurchase.text('Purchase ' + searchTerm + ' or Watch on Amazon Prime');
-	$('#moviePurchase').append(moviePurchase);
+function movieGet() {
+	getMovie = 'https:/www.amazon.com/s?k=' + searchTermURL + '&i=instant-video';
+	setContent();
 }
-// adds book/movie judgement based on reviews
-function judge() {
-	if (bookRating > movieRating) {
-		var bookP = $('<p>').html('The Book is Better');
-		bookP.attr('id', 'judgement');
-		$('#banner').append(bookP);
-		var rule = $('<div>');
-		rule.attr('id', 'rule');
-		$('#banner').append(rule);
+// sets content in html
+function setContent() {
+	$('.ratingLogoDiv').html('<img class="ratingLogo" src="./assets/images/rating-icon.svg">');
+	if (movieRating > bookRating) {
+		$('#whatsBetter').html('The Movie is Better');
+		$('#winnerTitle').html('<img class="ratingLogo" src="./assets/images/picture-icon.svg">' + movieTitle);
+		$('#winnerRating').html(movieRating);
+		$('#loserRating').html(bookRating);
+		$('#winnerPoster').html(moviePoster);
+		$('#loserPoster').html(bookPoster);
+		$('#winnerPlot').html(moviePlot);
+		$('#loserPlot').html(bookPlot);
+		$('#winnerReview').html(
+			'<img class="reviewLogo" src="./assets/images/critic-icon.svg">' +
+				'<a href="' +
+				movieReview +
+				'">NYT Critic Review</a>'
+		);
+		$('#loserReview').html(
+			'<img class="reviewLogo" src="./assets/images/critic-icon.svg">' +
+				'<a href="' +
+				bookReview +
+				'">NYT Critic Review</a>'
+		);
+		$('#winnerPoster').html(moviePoster);
+		$('#loserPoster').html(bookPoster);
+		$('#winnerGet').html(
+			'<img class="reviewLogo" src="./assets/images/get-icon.svg">' +
+				'<a  href="' +
+				getMovie +
+				'">Get Book on Amazon</a>'
+		);
+		$('#loserGet').html(
+			'<img class="reviewLogo" src="./assets/images/get-icon.svg">' +
+				'<a href="' +
+				getBook +
+				'">Watch on Amazon Prime</a>'
+		);
 	} else {
-		var movieP = $('<p>').html('The Movie is Better');
-		movieP.attr('id', 'judgement');
-		$('#banner').append(movieP);
-		var rule = $('<div>');
-		rule.attr('id', 'rule');
-		$('#banner').append(rule);
+		$('#whatsBetter').html('The Book is Better');
+		$('#winnerTitle').html('<img class="ratingLogo" src="./assets/images/paper-icon.svg">' + bookTitle);
+		$('#winnerRating').html(bookRating);
+		$('#loserRating').html(movieRating);
+		$('#winnerPoster').html(bookPoster);
+		$('#loserPoster').html(moviePoster);
+		$('#winnerPlot').html(bookPlot);
+		$('#loserPlot').html(moviePlot);
+		$('#winnerReview').html(
+			'<img class="reviewLogo" src="./assets/images/critic-icon.svg">' +
+				'<a href="' +
+				bookReview +
+				'">NYT Critic Review</a>'
+		);
+		$('#loserReview').html(
+			'<img class="reviewLogo" src="./assets/images/critic-icon.svg">' +
+				'<a href="' +
+				movieReview +
+				'">NYT Critic Review</a>'
+		);
+		$('#winnerPoster').html(bookPoster);
+		$('#loserPoster').html(moviePoster);
+		$('#winnerGet').html(
+			'<img class="reviewLogo" src="./assets/images/get-icon.svg">' +
+				'<a  href="' +
+				getBook +
+				'">Get Book on Amazon</a>'
+		);
+		$('#loserGet').html(
+			'<img class="reviewLogo" src="./assets/images/get-icon.svg">' +
+				'<a href="' +
+				getMovie +
+				'">Watch on Amazon Prime</a>'
+		);
 	}
 }
