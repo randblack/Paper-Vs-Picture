@@ -77,6 +77,7 @@ button#find-title {
 }
 
 #whatsBetter {
+	margin-left: 10px;
 	font-size: 36pt;
 	text-shadow: 0px 0px 10px #747474;
 }
@@ -95,6 +96,11 @@ button#find-title {
 	z-index: 1;
 }
 
+#vs {
+	font-size: 0.75em;
+	text-shadow: 0px 0px 10px #e70909;
+}
+
 #loserTitle {
 	height: 38px;
 }
@@ -102,6 +108,11 @@ button#find-title {
 .title {
 	font-size: 24pt;
 	text-shadow: 0px 0px 10px #969696;
+}
+
+.poster {
+	display: none;
+	box-shadow: 0px 0px 10px #747474;
 }
 
 #winnerPoster {
@@ -129,7 +140,8 @@ button#find-title {
 	border-radius: 5px;
 	overflow: hidden;
 	float: left;
-	filter: grayscale(90%);
+	filter: grayscale(50%);
+	filter: opacity(75%);
 }
 
 #loserPoster img {
