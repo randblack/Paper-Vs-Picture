@@ -119,7 +119,7 @@ function movieGet() {
 function setContent() {
 	$('.ratingLogoDiv').html('<img class="ratingLogo" src="./assets/images/rating-icon.svg">');
 	if (movieRating > bookRating) {
-		$('#whatsBetter').html('The Movie is Better');
+		$('#whatsBetter').html('The <span class="redText">Movie</span> is Better');
 		$('#winnerTitle').html('<img class="ratingLogo" src="./assets/images/picture-icon.svg">' + movieTitle);
 		$('#winnerRating').html(movieRating);
 		$('#loserRating').html(bookRating);
@@ -154,7 +154,7 @@ function setContent() {
 				'">Watch on Amazon Prime</a>'
 		);
 	} else {
-		$('#whatsBetter').html('The Book is Better');
+		$('#whatsBetter').html('The <span class="redText">Book</span> is Better');
 		$('#winnerTitle').html('<img class="ratingLogo" src="./assets/images/paper-icon.svg">' + bookTitle);
 		$('#winnerRating').html(bookRating);
 		$('#loserRating').html(movieRating);
