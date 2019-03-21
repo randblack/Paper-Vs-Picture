@@ -1,148 +1,244 @@
 body {
+	background-color: rgb(248, 248, 248);
+	color: rgb(58, 58, 58);
 	margin: 0px;
-	font-family: 'Nunito', sans-serif;
-	width: 100%;
-}
-
-.searchTerm {
-	background: -webkit-gradient(linear, left top, right bottom, from(#31a2ff), to(#18dcff));
-	font-size: 1em;
-	border-radius: 15px;
-	color: #fff;
-	border: none;
-	margin: 5px;
-	padding-right: 10px;
-	padding-left: 12px;
-	padding-top: 5px;
-	padding-bottom: 7px;
-}
-
-.searchTerm:hover,
-.searchTerm:focus,
-.searchTerm:active {
-	outline: none;
-}
-
-button#newAnimalBtn {
-	font-size: 15px;
-	height: 30px;
-	width: 60px;
-	background: -webkit-gradient(linear, left top, right bottom, from(#31a2ff), to(#18dcff));
-	color: #fff;
-	border: none;
-	border-radius: 8px;
-	margin: none;
-	padding-top: 0px;
-	padding-bottom: 0px;
-	font-family: 'Nunito', sans-serif;
-}
-
-#addImage {
-	width: 10px;
-	height: 10px;
-	/* margin-bottom: 1px; */
-}
-
-input#searchTitle {
-	margin: none;
-	margin-right: 5px;
-	border: none;
-	padding-top: 0px;
-	padding-bottom: 0px;
-	padding-left: 10px;
-	border-radius: 8px;
-	background-color: #e2e3e7;
-	color: #8e8d92;
-	height: 30px;
-	font-size: 1em;
-	font-family: 'Nunito', sans-serif;
-}
-
-#searchTitle:focus {
-	box-shadow: 0 0 3pt 1pt #008cff;
-	outline: none;
-}
-
-div#search {
-	margin-left: 20px;
 	margin-top: 10px;
-	margin-bottom: 10px;
-	float: left;
+	font-family: 'Roboto Condensed', sans-serif;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
 }
 
 #header {
-	position: fixed;
-	width: 100%;
-	background-color: #fff;
-	border-bottom: solid 1px #e2e3e7;
-	z-index: 1;
-}
-
-#logo {
-	height: 30px;
-	float: left;
-	margin-top: 10px;
 	margin-left: 10px;
-	z-index: 1;
 }
 
-#animalButtons {
-	padding: 15px;
-	width: 50%;
-	position: relative;
-	padding-top: 60px;
-	padding-bottom: 5px;
-	margin: auto;
-	text-align: center;
-}
-
-.gif {
-	object-fit: cover;
-	width: 300px;
-	height: 300px;
-	border: solid 1px #8e8d92;
-}
-
-.poloroid {
-	float: left;
-	margin: 15px;
-	padding: 10px;
-	border-radius: 5px;
-	background-color: #e2e3e7;
-}
-
-h1 {
-	margin: 5px;
-}
-
-p {
-	text-align: center;
-	margin: 5px;
-	font-size: 0.6em;
-	color: #8e8d92;
-}
-
-h2 {
-	float: right;
-	margin: 10px;
+#search-form {
 	display: inline;
-	color: #8e8d92;
+}
+
+input#title {
+	color: rgb(53, 53, 53);
+	border: none;
+	height: 30px;
+	width: 300px;
+	border-radius: 15px;
+	background-color: rgb(221, 221, 221);
+	font-size: 14pt;
+	padding-left: 15px;
+	margin: none;
+	padding-top: 0px;
+	padding-bottom: 0px;
+}
+
+input#title:focus {
+	outline: none;
 }
 
 #content {
-	margin: auto;
-	width: 90%;
-}
-.display-column {
-    padding-top: 20px;
-    border: 3px solid #fff;
-    text-align: center;
-    margin-top: 20px;
-    min-height: 500px;
-    background-color: rgba(255, 255, 255, .3);
+	margin-top: 50px;
+	margin-left: 20px;
 }
 
-img#bookCoverThumbnail{
-    width: 100%;
+::placeholder {
+	color: rgb(138, 138, 138);
 }
 
+button#find-title {
+	font-size: 15px;
+	height: 30px;
+	width: 70px;
+	background: #fff;
+	color: rgb(43, 43, 43);
+	border: none;
+	border-radius: 15px;
+	margin: none;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 0px;
+	padding-bottom: 0px;
+	display: none;
+}
+
+#winner {
+	width: 400px;
+	height: 500px;
+	margin: 0px;
+	float: left;
+}
+
+#loser {
+	width: 400px;
+	height: 500px;
+	margin-left: 25px;
+	float: left;
+}
+
+#whatsBetter {
+	font-size: 36pt;
+	text-shadow: 0px 0px 10px #747474;
+}
+
+#rule {
+	height: 2px;
+	width: 410px;
+	margin-bottom: 20px;
+	background-color: rgb(0, 0, 0);
+	border-radius: 1px;
+	opacity: 0.75;
+}
+
+#winnerTitle {
+	width: 800px;
+	z-index: 1;
+}
+
+#loserTitle {
+	height: 38px;
+}
+
+.title {
+	font-size: 24pt;
+	text-shadow: 0px 0px 10px #969696;
+}
+
+#winnerPoster {
+	clear: both;
+	width: 200px;
+	height: 300px;
+	border-radius: 5px;
+	overflow: hidden;
+	margin: 0;
+	float: left;
+}
+
+#winnerPoster img {
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
+#loserPoster {
+	clear: both;
+	margin-top: 10px;
+	margin-left: 15px;
+	width: 180px;
+	height: 270px;
+	border-radius: 5px;
+	overflow: hidden;
+	float: left;
+	filter: grayscale(90%);
+}
+
+#loserPoster img {
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+
+.ratingLogo {
+	width: 30px;
+	height: 30px;
+	margin-right: 10px;
+}
+
+.logoDiv {
+	float: left;
+	padding-right: 5px;
+}
+
+.plot {
+	font-size: 0.8em;
+	float: right;
+	width: 200px;
+	height: 260px;
+	box-sizing: border-box;
+	padding: 5px;
+	overflow: scroll;
+}
+
+.rating {
+	height: 40px;
+	width: 200px;
+	float: left;
+	text-shadow: 0px 0px 10px #969696;
+}
+
+.ratingLogoDiv {
+	height: 40px;
+	width: 35px;
+	margin: 0px;
+	float: left;
+}
+
+.loserRatingLogoDiv {
+	height: 40px;
+	width: 35px;
+	margin-right: 5px;
+	float: left;
+}
+
+.ratingLogo {
+	padding-top: 8px;
+	padding-left: 4px;
+	height: 24px;
+	width: 24px;
+}
+
+.loserRatingLogo {
+	padding-top: 8px;
+	padding-left: 9px;
+	height: 24px;
+	width: 24px;
+}
+
+#winnerRating {
+	font-size: 1.3em;
+	font-weight: bolder;
+	height: 40px;
+	padding-top: 10px;
+}
+
+#loserRating {
+	font-size: 1.3em;
+	height: 40px;
+	padding-top: 10px;
+}
+
+.linkDiv {
+	clear: both;
+	height: 20px;
+	padding-top: 10px;
+}
+
+.reviewLogoDiv {
+	float: left;
+}
+
+.getLogoDiv {
+	float: left;
+}
+
+.reviewLogo {
+	width: 15px;
+	height: 15px;
+	padding-top: 2px;
+	padding-right: 5px;
+}
+
+.getDiv {
+	height: 20px;
+}
+
+.getLogoDiv {
+	float: left;
+}
+
+#getLogo {
+	width: 15px;
+	height: 15px;
+	padding-top: 2px;
+	padding-right: 5px;
+}

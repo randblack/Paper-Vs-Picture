@@ -1,54 +1,61 @@
-<!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
-        crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="./assets/javascript/API-keys.js"></script>
-    <script src="./assets/javascript/app.js"></script>
-    <link rel="stylesheet" href="assets/css/style.css" />
-
-
-    <title>Paper-vs-Picture</title>
-
-</head>
-<body onload="initialize();">
-    <div class="container">
-        <div id="header">Image of Logo (Paper-vs-Picture)</div>
-        <div id="searchInput">
-            <form id="search-form">
-                <label for="title"><span class="text">Title of book</span></label><br>
-                <input type="text" id="title" placeholder="Enter Book Title"><br>
-                <input id="find-title" type="button" value="Submit">
-            </form>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <script src="./assets/javascript/script.js"></script>
+    <title>Paper vs icture</title>
+  </head>
+  <body onLoad="initialize();">
+    <div id="header">
+      <img src="" alt="logo">
+      <form id="search-form">
+        <input type="text" id="title" placeholder="Enter Title">
+        <button id="find-title" type="button" value="submit">Search</button>
+      </form>
+    </div>
+    <div id="content">
+      <div id="whatsBetter">Paper vs Picture</div>
+      <div id="rule"></div>
+      <div id="winner">
+        <div class="title" id="winnerTitle"></div>
+        <div id="winnerPoster"></div>
+        <div class="plot" id="winnerPlot"></div>
+        <div class="rating">
+          <div class="ratingLogoDiv"></div>
+          <div id="winnerRating"></div>
         </div>
-        <div class="container">
-            <img id="title-image" src="" alt="" />
-            <div class="row">
-                <div class="col-md-6 display-column">
-        <div id="book"></div>
-            <div id="bookCover"></div>
-            <div id="bookRating"></div>
-            <div id="bookReview"></div>
-            <div id="bookPurchase"></div>
+        <div class="linkDiv">
+          <div class="reviewLogoDiv"><img id="reviewLogo" src="./assets/images/critic-icon.svg"></div>
+          <div id="winnerReview"><a href="null"></a></div>
         </div>
-        <div class="col-md-6 display-column">
-        <div>
-            <div id="moviePoster" ></div>
-            <div id="movieRating"></div>
-            <div id="movieReview"></div>
-            <div id="moviePurchase"></div>
+        <div class="linkDiv">
+            <div class="getLogoDiv"><img id="reviewLogo" src="./assets/images/get-icon.svg"></div>
+            <div id="winnerGet"></div>
+          </div>
+      </div>
+      <div id="loser">
+        <div class="title" id="loserTitle">
+          <div class="logoDiv"></div>
         </div>
-
-
-        <div id="footer"></div>
-
-
+        <div id="loserPoster"></div>
+        <div class="plot" id="loserPlot"></div>
+        <div class="rating">
+          <div class="ratingLogoDiv"></div>
+          <div id="loserRating"></div>
+        </div>
+        <div class="linkDiv">
+          <div class="reviewLogoDiv"><img id="reviewLogo" src="./assets/images/critic-icon.svg"></div>
+          <div id="loserReview"></div>
+        </div>
+        <div class="linkDiv">
+            <div class="getLogoDiv"><img id="reviewLogo" src="./assets/images/get-icon.svg"></div>
+            <div id="loserGet"></div>
+          </div>
+      </div>
     </div>
   </body>
-
-</html>
+  </html>
