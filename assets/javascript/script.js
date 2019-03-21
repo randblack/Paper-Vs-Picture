@@ -27,6 +27,7 @@ function initialize() {
 		getBookContent();
 		movieGet();
 		bookGet();
+		getLocation();
 	});
 }
 // sets search term and clears previous results
