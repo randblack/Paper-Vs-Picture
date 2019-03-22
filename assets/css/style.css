@@ -254,3 +254,16 @@ button#find-title {
 	padding-top: 2px;
 	padding-right: 5px;
 }
+#bookstore {
+	font-size: 0.8em;
+	float: left;
+	width: 200px;
+	height: 410px;
+	box-sizing: border-box;
+	/*padding: 5px;*/
+	overflow: scroll;
+	position: relative;
+	bottom: -90px;
+	right: 220px;
+
+}
