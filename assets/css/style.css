@@ -116,6 +116,20 @@ button#find-title {
 	text-shadow: 0px 0px 10px #969696;
 }
 
+img, #search-form, #whatsBetter,#reviewLogo{
+	animation: fadeIn 3s;
+}
+
+@keyframes fadeIn {
+	from{
+		opacity: 0;
+	}
+
+	to{
+		opacity: 1;
+	}
+}
+
 #winnerPoster {
 	clear: both;
 	width: 200px;
@@ -260,10 +274,11 @@ button#find-title {
 	width: 200px;
 	height: 410px;
 	box-sizing: border-box;
-	/*padding: 5px;*/
+	padding: 5px;
 	overflow: scroll;
 	position: relative;
 	bottom: -90px;
 	right: 220px;
-
+	background-color: #fff;
 }
+

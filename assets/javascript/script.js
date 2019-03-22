@@ -154,7 +154,7 @@ function setContent() {
 				'">Watch on Amazon Prime</a>'
 		);
 	} else {
-		$('#whatsBetter').html('The <span class="redText">Book</span> is Better');
+		$('#whatsBetter').html('The <span class="redText">Movie</span> is Better');
 		$('#winnerTitle').html('<img class="ratingLogo" src="./assets/images/paper-icon.svg">' + bookTitle);
 		$('#winnerRating').html(bookRating);
 		$('#loserRating').html(movieRating);
