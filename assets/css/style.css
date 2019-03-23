@@ -6,7 +6,7 @@ body {
 	font-family: 'Roboto Condensed', sans-serif;
 }
 
-img{
+#pvpLogo {
 	width: 50px;
 	position: relative;
 	bottom: -5px;
@@ -168,6 +168,7 @@ img, #search-form, #whatsBetter,#reviewLogo{
 	width: 30px;
 	height: 30px;
 	margin-right: 10px;
+	margin-bottom: 10px;
 }
 
 .logoDiv {
@@ -196,6 +197,7 @@ img, #search-form, #whatsBetter,#reviewLogo{
 	height: 40px;
 	width: 35px;
 	margin: 0px;
+	margin-left: 10px;
 	float: left;
 }
 
@@ -206,13 +208,6 @@ img, #search-form, #whatsBetter,#reviewLogo{
 	float: left;
 }
 
-.ratingLogo {
-	padding-top: 8px;
-	padding-left: 4px;
-	height: 24px;
-	width: 24px;
-}
-
 .loserRatingLogo {
 	padding-top: 8px;
 	padding-left: 9px;
@@ -221,7 +216,7 @@ img, #search-form, #whatsBetter,#reviewLogo{
 }
 
 #winnerRating {
-	font-size: 1.3em;
+	font-size: 1.4em;
 	font-weight: bolder;
 	height: 40px;
 	padding-top: 10px;
@@ -250,6 +245,7 @@ img, #search-form, #whatsBetter,#reviewLogo{
 .reviewLogo {
 	width: 15px;
 	height: 15px;
+	margin-bottom: 10px;
 	padding-top: 2px;
 	padding-right: 5px;
 }
