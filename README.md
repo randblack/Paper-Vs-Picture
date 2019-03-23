@@ -1,4 +1,4 @@
 # Paper-Vs-Picture
 
-2019-03-11 9:15PM
-Book Title Search Input save as 
+GitHub prevents the Amazon links being redirected away from Github IO pages. 
+the here MAP API does not load while being hosted by Github. 
