@@ -6,3 +6,5 @@ Written in HTML, CSS, and JavaScript. This app utilizes 4 separate APIs to deter
 
 GitHub prevents the Amazon links being redirected away from Github IO pages. 
 the here MAP API does not load while being hosted by Github. 
+
+[View Demo](https://tommyyxou.github.io/Paper-Vs-Picture/)
